@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+<title>{% block title %}REGISTRAR ASISTENCIA{% endblock %}</title>
+
+<body>
+{% block content %}
+  <h1>Registrar Asistencia</h1>
+  <div style="margin-left: 39%;">
+  <form method="POST" action="{{ url_for('asistenciaCurso') }}">  
+      {% if cursos is not none:%}
+      <label for="cursos">Cursos</label>
+      <select id="cursos" name="cursos" width="500px">
+        {% for curso in cursos %}
+        <option value="{{curso.id}}"> Año:{{curso.anio}} Division:{{curso.division}} </option>
+        {% endfor %}  
+      </select>
+      {% endif %}
+    <input type="submit" value="Registrar asistencia">
+  </form>
+</div>
+{% endblock %}
+</body>

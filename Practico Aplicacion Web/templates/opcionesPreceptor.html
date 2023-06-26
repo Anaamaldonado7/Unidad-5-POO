@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<title>{% block title %}BIENVENIDO, PRECEPTOR{% endblock %}</title>
+<body>
+{% block content %}  
+	<section>
+		<h1>Bienvenido, Preceptor</h1>
+		<p>Correo electrónico: {{ session['preceptor'] }}</p>
+	</section>
+	<section>
+		<nav>
+			<ul>
+				<h3>¿Que desea realizar?</h3>
+				<li><a href="{{ url_for ('registraAsistencia') }}">Registrar asistencia</a></li>
+				<li><a href="{{ url_for ('listarAsistencia') }}">Informe con detalles</a></li>
+			</ul>
+		</nav>
+	</section>
+	<br>
+	<br>
+   
+{% endblock %}
+</body>

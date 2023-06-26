@@ -1,0 +1,155 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-image: url('/static/img/fondo.jpg');
+}
+/* header {
+  display: flex;
+  height: 70px;
+  width: 100;
+  opacity: .9;
+  margin-bottom: 2%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+} */
+
+h1 { 
+  
+  display: flex;
+  font-size: 3em;
+	font-family: fantasy; 
+	text-align: center;
+	color: #030303; 
+}
+h2 {
+  font-size: 2em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+  color: #030303;
+}
+h5{
+  font-size: 2em;
+  margin-top: 40px;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: -2px;
+  color: red;
+}
+h4{
+  font-size: 2em;
+  margin-top: 40px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: -2px;
+  color: #030303;
+}
+img {
+  display: flex;
+  background-color: transparent;
+  margin-top: 10 px;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+
+}
+nav a{
+  font-weight: 600;
+  padding-right: 10px;
+}
+nav a:hover{
+  color: #ffffff;
+}
+p {
+	margin-left: 2em; 
+  font-size: 1,5em;
+	color: #123A42;
+}
+
+ul {
+  margin-left: auto;
+  margin-right: auto;
+  list-style-type: none;
+  padding: 0;
+  width: 37%;
+  background-color: #aed4e9;
+  text-align: center;
+  height: 3.3rem;
+}
+
+li a {
+  display: block;
+  background-color: #393839a1;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: white;
+}
+
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-left: 2em; 
+}
+th, td {
+  padding: 5px;
+}
+.container {
+  padding-top: 2%;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.container label { 
+	font-weight: bold; 
+	margin-bottom: 2em; 
+	margin-left: 2em; 
+	color: #123A42;
+}
+.container input { 
+	margin-bottom: 1em; 
+	margin-left: 2em;
+}
+.container button {
+  flex: auto;
+	margin-bottom: 1em; 
+	margin-left: 2em;
+} 
+.container textarea { 
+	min-height: 12em; 
+	resize: vertical; 
+	margin-left: 2em;
+}
+.container select { 
+	margin-bottom: 1em; 
+	margin-left: 4em;
+}
+.menu {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  float: right;
+  margin-top: 8px;
+}
+.menu li {
+  display: inline;
+}
+.menu li + li {
+  margin-left: 35px;
+}
+.menu li a {
+  color: #444;
+  text-decoration: none;
+}
+.myDiv {
+  margin-bottom: 2em; 
+	margin-right: 4em;
+  text-align: center;
+}

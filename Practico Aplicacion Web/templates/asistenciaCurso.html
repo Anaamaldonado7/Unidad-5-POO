@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+<title>{% block title %}ASISTENCIA{% endblock %}</title>
+
+<body>
+    {% block content %}
+<h1>ASISTENCIA PARA EL CURSO: {{ curso.anio }} {{ curso.division }}</h1>
+    <h3>Seleccione un alumno:</h3>
+    <div style="display: flex; justify-content: center; background-color: #0a0b0b61;">
+    {% if alumnos is not none :%}
+        {% for alumno in alumnos | sort(attribute='nombre') %}
+            {% if alumno.idcurso == curso.id :%}
+            <a href="{{ url_for('asistenciaAlumnos', alumno=alumno.id) }}">{{ alumno.nombre }} {{ alumno.apellido }}</a>
+            <br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
+</body>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+<title>{% block title %}ASISTENCIA{% endblock %}</title>
+<body>
+{% block content %}
+    <form action="{{ url_for('confirmarAsistencia')}}" method="post">
+        <div >
+            <h4>Alumno seleccionado:</h4>
+            <input type="hidden" name="idalumno" value="{{ idalumno }}" >
+            <p>Alumno/a: {{ alumno.nombre }} {{ alumno.apellido }}</p>
+        </div>
+        <div style="margin-left: 45%">
+        <div>
+            <select name="tipoclase">
+                <option value="1" name="Claseaula">AULA</option>
+                <option value="2" name="Claseedu">EDUCACION FISICA</option>
+            </select>
+        </div>
+        <div>
+            <input type="date" id="start" name="fecha"
+            value="2013-06-24"
+            min="2023-01-01" max="2023-12-31">
+
+        </div>
+        <div>
+            <input type="text" name="asis" placeholder="Asistencia (s =Si / n = No)">
+        </div>
+        <div>
+            <input type="text" name="justificacion" placeholder="Justificacion">
+        </div>
+        <button type="submit">Guardar asistencia</button>
+    </div>
+    </form>
+{% endblock %}
+</body>
+

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+<title>{% block title %}LISTADO{% endblock %}</title>
+
+<body>
+    {% block content %}
+    <h3>Listado detallado:</h3>
+
+    <table>
+        <tr>
+            <td>Nombre alumnos</td>
+            <td>Clases de aula presentes</td>
+            <td>Clases de Educacion fisica presente</td>
+            <td>Clases de aula ausentes justificadas</td>
+            <td>Clases de aula ausentes injustificadas</td>
+            <td>Clases de Educacion Fisicas justificadas</td>
+            <td>Clases de Educacion Fisica injustificadas</td>
+            <td>Computo total de inasistencias</td>
+        </tr>
+        {% for alumno in alumnos | sort(attribute='nombre') %}
+        {% if alumno.idcurso == curso.id %}
+        {% set aulaasistencia = 0 %}
+        {% set eduasistencia = 0 %}
+        {% set aulajustificada = 0 %}
+        {% set aulainjustificada = 0 %}
+        {% set edujustificada = 0 %}
+        {% set eduinjustificada = 0 %}
+        {% set total = 0 %}
+
+        {% for asis in asistencia %}
+        {% set total = total + 1 %}
+        <!-- <tr>
+            <td>{{ asis.idestudiante }} {{ asis.asistio }} {{ asis.codigoclase }} {{ asis.justificacion }}</td>
+        </tr> -->
+        {% if asis.idestudiante == alumno.id and asis.asistio == 's' and asis.codigoclase == '1' %}
+        {% set aulaasistencia = aulaasistencia + 1 %}
+
+        {% elif asis.idestudiante == alumno.id and asis.asistio == 's' and asis.codigoclase == '2' %}
+        {% set eduasistencia = eduasistencia + 1 %}
+        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '1' and asis.justificacion != '' %}
+        {% set aulajustificada = aulajustificada + 1 %}
+
+        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '1' and asis.justificacion == '' %}
+        {% set aulainjustificada = aulainjustificada + 1 %}
+
+        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '2' and asis.justificacion != '' %}
+        {% set edujustificada = edujustificada + 1 %}
+
+        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '2' and asis.justificacion == '' %}
+        {% set eduinjustificada = eduinjustificada + 1 %}
+        {% endif %}
+        {% endfor %}
+
+        {% set total = aulaasistencia + eduasistencia + aulajustificada + aulainjustificada + edujustificada + eduinjustificada %}
+
+        <tr>
+            <td>{{ alumno.nombre }} {{ alumno.apellido }}</td>
+            <td>{{ aulaasistencia }}</td>
+            <td>{{ eduasistencia }}</td>
+            <td>{{ aulajustificada }}</td>
+            <td>{{ aulainjustificada }}</td>
+            <td>{{ edujustificada }}</td>
+            <td>{{ eduinjustificada }}</td>
+            <td>{{ total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>

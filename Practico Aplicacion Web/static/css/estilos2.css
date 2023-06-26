@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-image: url('/static/img/fondo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  background-color: #DFB887;
+  height: 10%;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 2%;
+}
+
+h1 {
+	font-family: arial;
+	text-align: center;
+	color: white;
+}
+h2 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+}
+p {
+	margin-left: 2em; 
+}
+
+.container {
+  padding-top: 2%;
+  width: 50%;
+  margin: 0 auto;
+}
+nav a {
+  font-weight: 600;
+  padding-right: 10px;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+p {
+  margin-left: 0em;
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+ul {
+  margin-left: auto;
+  margin-right: auto;
+  list-style-type: none;
+  padding: 0;
+  width: 37%;
+  text-align: center;
+  height: 3.3rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  padding-left: 1rem;
+}
+
+a:hover {
+  color: white;
+  /* text-decoration: none; */
+  cursor: pointer;
+}
+
+li a {
+  display: block;
+  background-color: #393839a1;
+  padding: 8px 17px;
+  margin-top: 1%;
+  text-decoration: none;
+  color: white;
+}
+
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.container label {
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: white;
+	font-size: 1.3rem;
+}
+.container input {
+	/* margin-bottom: 1em; */
+	margin-left: 2em;
+}
+.container button {
+	margin-bottom: 1em;
+	margin-left: 2em;
+} 
+.container textarea { 
+	min-height: 12em; 
+	resize: vertical; 
+}
+.container select { 
+	margin-bottom: 1em; 
+	margin-left: 4em;
+}
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+.menu li {
+  display: inline;
+}
+.menu li + li {
+  margin-left: 35px;
+}
+.menu li a {
+  color: #444;
+  text-decoration: none;
+}
+.myDiv {
+  margin-bottom: 2em; 
+	margin-right: 4em;
+  text-align: center;
+}
