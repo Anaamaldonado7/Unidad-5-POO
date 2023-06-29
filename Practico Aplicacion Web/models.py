@@ -4,13 +4,13 @@ from datetime import datetime
 
 db = SQLAlchemy(app)
 
-class Curso(db.Model):
-    __tablename__ = 'curso'
-    id = db.Column(db.Integer, primary_key=True)
-    anio = db.Column(db.Integer, nullable=False)
-    division = db.Column(db.Integer, nullable=False)
-    idpreceptor = db.Column(db.Integer, db.ForeignKey('preceptor.id'))
-    cursos_preceptor = db.relationship('Preceptor', backref='curso')
+class Curso(db.Model):#Clase que vincula la base de datos y va creando instancias
+    __tablename__ = 'curso' #nombre de la tabla en la base de datos
+    id = db.Column(db.Integer, primary_key=True)#columna1
+    anio = db.Column(db.Integer, nullable=False)#columna2
+    division = db.Column(db.Integer, nullable=False)#columna3
+    idpreceptor = db.Column(db.Integer, db.ForeignKey('preceptor.id'))#columna4
+    cursos_preceptor = db.relationship('Preceptor', backref='curso')#asociacion entre preceptor y curso (1 curso tiene un preceptor)
 
 class Estudiante(db.Model):
     __tablename__='estudiante'

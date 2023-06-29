@@ -18,49 +18,45 @@
         </tr>
         {% for alumno in alumnos | sort(attribute='nombre') %}
         {% if alumno.idcurso == curso.id %}
-        {% set aulaasistencia = 0 %}
-        {% set eduasistencia = 0 %}
-        {% set aulajustificada = 0 %}
-        {% set aulainjustificada = 0 %}
-        {% set edujustificada = 0 %}
-        {% set eduinjustificada = 0 %}
-        {% set total = 0 %}
-
+        {% set contador = {
+        'aulaasistencia': 0,
+        'eduasistencia': 0,
+        'aulajustificada': 0,
+        'aulainjustificada': 0,
+        'edujustificada': 0,
+        'eduinjustificada': 0,
+        'total': 0
+        } %}
+        
         {% for asis in asistencia %}
-        {% set total = total + 1 %}
-        <!-- <tr>
-            <td>{{ asis.idestudiante }} {{ asis.asistio }} {{ asis.codigoclase }} {{ asis.justificacion }}</td>
-        </tr> -->
-        {% if asis.idestudiante == alumno.id and asis.asistio == 's' and asis.codigoclase == '1' %}
-        {% set aulaasistencia = aulaasistencia + 1 %}
-
-        {% elif asis.idestudiante == alumno.id and asis.asistio == 's' and asis.codigoclase == '2' %}
-        {% set eduasistencia = eduasistencia + 1 %}
-        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '1' and asis.justificacion != '' %}
-        {% set aulajustificada = aulajustificada + 1 %}
-
-        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '1' and asis.justificacion == '' %}
-        {% set aulainjustificada = aulainjustificada + 1 %}
-
-        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '2' and asis.justificacion != '' %}
-        {% set edujustificada = edujustificada + 1 %}
-
-        {% elif asis.idestudiante == alumno.id and asis.asistio == 'n' and asis.codigoclase == '2' and asis.justificacion == '' %}
-        {% set eduinjustificada = eduinjustificada + 1 %}
+        {% if asis.idestudiante == alumno.id and asis.asistio.lower() == 's' and asis.codigoclase == 1 %}
+        {% set _ = contador.update({'aulaasistencia': contador.aulaasistencia + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 's' and asis.codigoclase == 2 %}
+        {% set _ = contador.update({'eduasistencia': contador.eduasistencia + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 1 and asis.justificacion != '' %}
+        {% set _ = contador.update({'aulajustificada': contador.aulajustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 1 and asis.justificacion == '' %}
+        {% set _ = contador.update({'aulainjustificada': contador.aulainjustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 2 and asis.justificacion != '' %}
+        {% set _ = contador.update({'edujustificada': contador.edujustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 0.5}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 2 and asis.justificacion == '' %}
+        {% set _ = contador.update({'eduinjustificada': contador.eduinjustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 0.5}) %}
         {% endif %}
         {% endfor %}
-
-        {% set total = aulaasistencia + eduasistencia + aulajustificada + aulainjustificada + edujustificada + eduinjustificada %}
-
+        
         <tr>
             <td>{{ alumno.nombre }} {{ alumno.apellido }}</td>
-            <td>{{ aulaasistencia }}</td>
-            <td>{{ eduasistencia }}</td>
-            <td>{{ aulajustificada }}</td>
-            <td>{{ aulainjustificada }}</td>
-            <td>{{ edujustificada }}</td>
-            <td>{{ eduinjustificada }}</td>
-            <td>{{ total }}</td>
+            <td>{{ contador.aulaasistencia }}</td>
+            <td>{{ contador.eduasistencia }}</td>
+            <td>{{ contador.aulajustificada }}</td>
+            <td>{{ contador.aulainjustificada }}</td>
+            <td>{{ contador.edujustificada }}</td>
+            <td>{{ contador.eduinjustificada }}</td>
+            <td>{{ contador.total }}</td>
         </tr>
         {% endif %}
         {% endfor %}

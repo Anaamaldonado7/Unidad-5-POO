@@ -3,14 +3,14 @@
 <body>
 {% block content %}  
 	<section>
-		<h1>Bienvenido, Preceptor</h1>
+		<h1>Bienvenido, Preceptor/a</h1>
 		<p>Correo electrónico: {{ session['preceptor'] }}</p>
 	</section>
 	<section>
-		<nav>
-			<ul>
-				<h3>¿Que desea realizar?</h3>
-				<li><a href="{{ url_for ('registraAsistencia') }}">Registrar asistencia</a></li>
+		<nav> <!--Muestra varias opciones en las que se puede navegar-->
+			<ul> <!--Crea un listado-->
+				<h3>Seleccione una opcion del menu...</h3>
+				<li><a href="{{ url_for ('registraAsistencia') }}">Registrar una asistencia</a></li><!--li crea una parte de la lista y en HTML <a href sirve para enlazar al metodo a llamar-->
 				<li><a href="{{ url_for ('listarAsistencia') }}">Informe con detalles</a></li>
 			</ul>
 		</nav>

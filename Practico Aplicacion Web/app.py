@@ -1,10 +1,8 @@
 from datetime import datetime
 from flask import Flask, redirect, render_template, request, url_for, session
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from string import hexdigits
 import hashlib
-import sqlite3
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -24,15 +22,15 @@ def verificacion():
     if not email and not clave:
         return render_template('error.html',error="No se ingresaron datos, intente nuevamente.")
     else:
-        password=(hashlib.md5(bytes(clave, encoding='utf-8'))).hexdigest()
-        exists = db.session.query(db.exists().where(Preceptor.correo == email,Preceptor.clave == password)).scalar()
+        password=(hashlib.md5(bytes(clave, encoding='utf-8'))).hexdigest() #metodo para encriptar la contraseña
+        exists = db.session.query(db.exists().where(Preceptor.correo == email, Preceptor.clave == password)).scalar() #metodo para verificar si existen los datos en la base de datos
         print(exists)
-        if exists:
-            return redirect(url_for('preceptor',correo = email))
+        if exists == True:
+            return redirect(url_for('preceptor',correo = email)) #redirect redirecciona a un metodo
         else:
-            return render_template('error.html',error="Credenciales incorrectas, intente nuevamente")
+            return render_template('error.html',error="Credenciales incorrectas, intente nuevamente") #render_template muestra una ventana
             
-@app.route('/preceptor',methods =['POST','GET'] )
+@app.route('/preceptor',methods =['POST','GET'] ) #metodo para guardar la sesion actual del preceptor y llamar la ventana de opciones
 def preceptor():
     correo = request.args.get('correo')
     session["preceptor"] = correo
@@ -42,14 +40,14 @@ def preceptor():
 def registraAsistencia():
     correoPrecep = session.get("preceptor")
     print(correoPrecep)
-    preceptor = Preceptor.query.filter_by(correo=correoPrecep).first()
+    preceptor = Preceptor.query.filter_by(correo=correoPrecep).first() #Filtra la base de datos del preceptor segun el correo ingresado y guarda la instancia
     print(preceptor)
-    cursos = Curso.query.filter_by(idpreceptor=preceptor.id).all()
+    cursos = Curso.query.filter_by(idpreceptor=preceptor.id).all() #Filtra la base de datos de los cursos segun el curso que tiene el preceptor y guarda todas las instancias que le corresponden
     return render_template('registraAsistencia.html',cursos=cursos,preceptor=preceptor)   
 
 @app.route('/asistenciaCurso',methods=['POST','GET'])
 def asistenciaCurso():
-    idcurso=request.form.get('cursos')
+    idcurso=request.form['cursos']
     curso = Curso.query.filter_by(id=idcurso).first()
     alumnos=Estudiante.query.all()
     return render_template('asistenciaCurso.html', curso=curso, alumnos=alumnos)          
@@ -81,7 +79,7 @@ def listarAsistencia():
 
 @app.route('/informe',methods=['POST','GET'])
 def informe():
-    idcurso=request.form.get('cursos')
+    idcurso=request.form['cursos']
     curso = Curso.query.filter_by(id=idcurso).first()
     alumnos = Estudiante.query.all()
     asistencia=Asistencia.query.all()
